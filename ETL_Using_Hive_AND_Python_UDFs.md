@@ -137,6 +137,21 @@ MSCK REPAIR TABLE user;
 select * from user;
 ```
    
+# Loading the Whole file Contents into External table with the Partitioning  
+```SQL
+CREATE EXTERNAL TABLE user02(
+fileContent String
+)
+PARTITIONED BY (date String)
+STORED AS TEXTFILE
+
+LOCATION '/user/cloudera/hiveparttabledir';
+
+MSCK REPAIR TABLE user02;
+
+select * from user02;
+```
+  
 # Staging data to Primary Table  
   
 ## Loading data into Primary Partitioned Table from external staging table:  
