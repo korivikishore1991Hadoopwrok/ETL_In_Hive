@@ -144,7 +144,6 @@ fileContent String
 )
 PARTITIONED BY (date String)
 STORED AS TEXTFILE
-
 LOCATION '/user/cloudera/hiveparttabledir';
 
 MSCK REPAIR TABLE user02;
