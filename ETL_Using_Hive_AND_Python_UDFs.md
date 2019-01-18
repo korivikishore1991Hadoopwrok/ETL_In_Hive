@@ -210,3 +210,18 @@ hive>>add FILE /tmp/udf.py;
 ```SQL
 hive>>SELECT TRANSFORM(fname, lname) USING 'python udf.py' AS (fname, l_name) FROM mytable;
 ```
+  
+# Beeline  
+## Querying using variable and bash in Beeline  
+```sql
+var="AS"
+
+beeline -u $beeline_connect -e "select t.x, count(t.x) as Row_Count from db.t where t.x=\"${var}\" group by t.x;" &> Shell_retrival.log
+```  
+  
+## Querying using --hivevar and sql file in Beeline  
+```sql
+#vi /home/dir/Script/query.hql
+#select t.x, count(t.x) as Row_Count from db.t where t.x="${var}" group by t.x;
+beeline -u $beeline_connect --hivevar var="AS" -f /home/dir/Script/query.hql &> query_file_retrival.log
+```
